@@ -14,8 +14,7 @@ df.loc[(df["Age1"].isnull()) & (df["Pclass"] == 3) & (df["Sex"] == "female"), "A
 df["Age"] = df["Age1"]
 df = df.drop('Age1', axis=1)
 df = df.drop('Cabin', axis=1)
-df.loc[df["Sex"] == "male", "Sex"] = 0
-df.loc[df["Sex"] == "female", "Sex"] = 1
+df["Sex"] = df["Sex"].map({"male": 0, "female": 1})
 df.loc[df["Age"] <= 22, "Age"] = 0
 df.loc[(df["Age"] > 22) & (df["Age"] <= 27), "Age"] = 1
 df.loc[(df["Age"] > 27) & (df["Age"] <= 37), "Age"] = 2
